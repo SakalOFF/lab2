@@ -1,5 +1,6 @@
 import math
 import random
+import time
 
 x1min = 10
 x1max = 50
@@ -22,6 +23,8 @@ x2l = [-1, -1, 1]
 y1l = [random.randint(ymin, ymax) for _ in range(5)]
 y2l = [random.randint(ymin, ymax) for _ in range(5)]
 y3l = [random.randint(ymin, ymax) for _ in range(5)]
+
+star_time = time.perf_counter()
 
 y1 = sum(y1l) / 5
 y2 = sum(y2l) / 5
@@ -79,6 +82,10 @@ elif 12 < m <= 15:
 else:
     Rk = p[6]
 
+if Ruv1 < Rk and Ruv2 < Rk and Ruv3 < Rk:
+    print("Дисперсія однорідна")
+
+print("Час перевірки за критерієм Романовського: {:.7f} c".format(time.perf_counter() - star_time))
 
 mx1 = sum([x1l[i] for i in range(3)]) / 3
 mx2 = sum([x2l[i] for i in range(3)]) / 3
@@ -110,7 +117,5 @@ a0 = b0 - b1 * x10 / dx1 - b2 * x20 / dx2
 a1 = b1 / dx1
 a2 = b2 / dx2
 
-if Ruv1 < Rk and Ruv2 < Rk and Ruv3 < Rk:
-    print("Дисперсія однорідна")
 print("y = {:.4} + {:.4}*x1 + {:.4}*x2".format(b0, b1, b2))
 print("y = {:.4} + {:.4}*x1 + {:.4}*x2".format(a0, a1, a2))
